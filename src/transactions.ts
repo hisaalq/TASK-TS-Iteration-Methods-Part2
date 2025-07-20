@@ -21,8 +21,10 @@ const transactions: Transaction[] = [
 // filterIncomeTransactions(transactions); // => [["income", 1000], ["income", 1500], ["income", 700]]
 function filterIncomeTransactions(transactions: Transaction[]): Transaction[] {
   // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  const newIncomeTransactions = transactions.filter(
+    (transaction) => transaction[0] === "income"
+  );
+  return newIncomeTransactions; // replace empty array with what you see is fit
 }
 
 // `filterExpenseTransactions` function that:
@@ -32,8 +34,10 @@ function filterIncomeTransactions(transactions: Transaction[]): Transaction[] {
 // filterExpenseTransactions(transactions); // => [["expense", 500], ["expense", 300]]
 function filterExpenseTransactions(transactions: Transaction[]): Transaction[] {
   // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  const newExpenseTransactions = transactions.filter(
+    (transaction) => transaction[0] === "expense"
+  );
+  return newExpenseTransactions; // replace empty array with what you see is fit
 }
 
 // `calculateTotalIncome` function that:
@@ -43,8 +47,13 @@ function filterExpenseTransactions(transactions: Transaction[]): Transaction[] {
 // calculateTotalIncome(transactions); // => 3200  (1000 + 1500 + 700)
 function calculateTotalIncome(transactions: Transaction[]): number {
   // write your code here...
-
-  return -1; // replace -1 with what you see is fit
+  let totalIncome = 0;
+  for (const transaction of transactions) {
+    if (transaction[0] === "income") {
+      totalIncome += transaction[1];
+    }
+  }
+  return totalIncome; // replace -1 with what you see is fit
 }
 
 // `calculateTotalExpenses` function that:
@@ -54,8 +63,13 @@ function calculateTotalIncome(transactions: Transaction[]): number {
 // calculateTotalExpenses(transactions); // => 800  (500 + 300)
 function calculateTotalExpenses(transactions: Transaction[]): number {
   // write your code here...
-
-  return -1; // replace -1 with what you see is fit
+  let totalExpenses = 0;
+  for (const transaction of transactions) {
+    if (transaction[0] === "expense") {
+      totalExpenses += transaction[1];
+    }
+  }
+  return totalExpenses; // replace -1 with what you see is fit
 }
 
 // `calculateNetTotal` function that:
@@ -65,8 +79,9 @@ function calculateTotalExpenses(transactions: Transaction[]): number {
 // calculateNetTotal(transactions); // => 2400  (3200 - 800)
 function calculateNetTotal(transactions: Transaction[]): number {
   // write your code here...
-
-  return -1; // replace -1 with what you see is fit
+  const totalIncome = calculateTotalIncome(transactions);
+  const totalExpenses = calculateTotalExpenses(transactions);
+  return totalIncome - totalExpenses; // replace -1 with what you see is fit
 }
 
 // `filterSignificantTransactions` function that:
@@ -81,8 +96,10 @@ function filterSignificantTransactions(
   threshold: number
 ): Transaction[] {
   // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  const newTransactions = transactions.filter(
+    (transaction) => transaction[1] >= threshold
+  );
+  return newTransactions; // replace empty array with what you see is fit
 }
 
 export {
